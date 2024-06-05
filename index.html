@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hands Do</title>
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .emoji-container {
+            font-size: 6rem;
+        }
+
+        @keyframes zoom-in {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoom-out {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        .zoom-in {
+            animation: zoom-in 0.2s forwards;
+        }
+
+        .zoom-out {
+            animation: zoom-out 0.2s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji-container">
+        <span id="emoji" class="zoom-in">🙌🏻</span>
+    </div>
+    <script>
+        const emojis = ['🙌🏻', '✍🏻', '🫱🏻‍🫲🏽', '✌🏻'];
+        let currentIndex = 0;
+
+        const emojiElement = document.getElementById('emoji');
+
+        function changeEmoji() {
+            emojiElement.classList.remove('zoom-in');
+            emojiElement.classList.add('zoom-out');
+
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % emojis.length;
+                emojiElement.textContent = emojis[currentIndex];
+
+                emojiElement.classList.remove('zoom-out');
+                emojiElement.classList.add('zoom-in');
+            }, 200); 
+        }
+
+        setInterval(changeEmoji, 1000);
+    </script>
+</body>
+</html>
